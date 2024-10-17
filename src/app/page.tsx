@@ -1,7 +1,11 @@
+
 "use client"; // Ensure this runs on the client side.
 import { useState } from "react";
 import Header from "./components/Header";
 import LinkCustomization from "./components/LinkCustomization"; // Import the new LinkCustomization component
+
+
+
 
 const Home = () => {
   const [links, setLinks] = useState([]); // State to manage links
@@ -11,7 +15,7 @@ const Home = () => {
     setLinks([...links, { id: links.length, title: `Link #${links.length + 1}`, platform: "GitHub" }]);
   };
 
-  // Function to remove a link
+  
   const removeLink = (id) => {
     setLinks(links.filter(link => link.id !== id));
   };
