@@ -1,8 +1,6 @@
 "use client"; // Ensure this runs on the client side.
 import { useState } from "react";
-import Image from "next/image";
 import Header from "./components/Header";
-import Placeholder from "./components/Cards"; // Import the Placeholder component
 import LinkCustomization from "./components/LinkCustomization"; // Import the new LinkCustomization component
 
 const Home = () => {
