@@ -1,7 +1,6 @@
-// components/LinkCustomization.js
+// components/LinkCustomization.tsx
 import React from "react";
 import Placeholder from "./Cards"; // Adjust the import as necessary
-
 
 interface Link {
   id: number;
@@ -14,6 +13,7 @@ interface LinkCustomizationProps {
   removeLink: (id: number) => void;
   addNewLink: () => void;
 }
+
 const LinkCustomization: React.FC<LinkCustomizationProps> = ({ links, removeLink, addNewLink }) => {
   return (
     <div className="flex-grow bg-white rounded-xl p-6 space-y-6">
@@ -33,42 +33,48 @@ const LinkCustomization: React.FC<LinkCustomizationProps> = ({ links, removeLink
         + Add new link
       </button>
 
-      {/* Displaying Links */}
-      <div className="space-y-4">
-        {links.map((link) => (
-          <div key={link.id} className="h-[228px] p-5 bg-neutral-50 rounded-xl border flex-col justify-center items-center gap-3 inline-flex">
-            <div className="self-stretch justify-between items-start inline-flex">
-              <div className="justify-start items-center gap-2 flex">
-                <div className="flex-col justify-start items-start gap-1 inline-flex">
-                  <div className="w-3 h-px bg-[#727272]"></div>
-                  <div className="w-3 h-px bg-[#727272]"></div>
+      {/* Displaying Links or Placeholder */}
+      {links.length === 0 ? ( // Conditional rendering for placeholder
+        <Placeholder /> // Render the Placeholder component if there are no links
+      ) : (
+        <div className="space-y-4">
+          {links.map((link) => (
+            <div key={link.id} className="h-[228px] p-5 bg-neutral-50 rounded-xl border flex-col justify-center items-center gap-3 inline-flex">
+              <div className="self-stretch justify-between items-start inline-flex">
+                <div className="justify-start items-center gap-2 flex">
+                  <div className="flex-col justify-start items-start gap-1 inline-flex">
+                    <div className="w-3 h-px bg-[#727272]"></div>
+                    <div className="w-3 h-px bg-[#727272]"></div>
+                  </div>
+                  <div className="text-[#727272] text-base font-bold font-['Instrument Sans'] leading-normal">{link.title}</div>
                 </div>
-                <div className="text-[#727272] text-base font-bold font-['Instrument Sans'] leading-normal">{link.title}</div>
+                <button
+                  onClick={() => removeLink(link.id)}
+                  className="text-[#727272] text-base font-normal font-['Instrument Sans'] leading-normal"
+                >
+                  Remove
+                </button>
               </div>
-              <button
-                onClick={() => removeLink(link.id)}
-                className="text-[#727272] text-base font-normal font-['Instrument Sans'] leading-normal"
-              >
-                Remove
-              </button>
-            </div>
-            <div className="self-stretch h-[70px] flex-col justify-start items-start gap-1 flex">
-              <div className="w-[396px] text-[#333333] text-xs font-normal font-['Instrument Sans'] leading-[18px]">Platform</div>
-              <div className="self-stretch px-4 py-3 bg-white rounded-lg border border-[#d9d9d9] justify-start items-center gap-3 inline-flex">
-                <div className="w-4 h-4 relative"></div>
-                <div className="grow shrink basis-0 text-[#333333] text-base font-normal font-['Instrument Sans'] leading-normal">{link.platform}</div>
+              <div className="self-stretch h-[70px] flex-col justify-start items-start gap-1 flex">
+                <div className="w-[396px] text-[#333333] text-xs font-normal font-['Instrument Sans'] leading-[18px]">Platform</div>
+                <div className="self-stretch px-4 py-3 bg-white rounded-lg border border-[#d9d9d9] justify-start items-center gap-3 inline-flex">
+                  <div className="w-4 h-4 relative"></div>
+                  <div className="grow shrink basis-0 text-[#333333] text-base font-normal font-['Instrument Sans'] leading-normal">{link.platform}</div>
+                </div>
+              </div>
+              <div className="self-stretch h-[70px] flex-col justify-start items-start gap-1 flex">
+                <div className="w-[396px] text-[#333333] text-xs font-normal font-['Instrument Sans'] leading-[18px]">Link</div>
+                <div className="self-stretch px-4 py-3 bg-white rounded-lg border border-[#d9d9d9] justify-start items-center gap-3 inline-flex">
+                  <div className="w-4 h-4 relative"></div>
+                  <div className="opacity-50 text-[#333333] text-base font-normal font-['Instrument Sans'] leading-normal">e.g. https://www.github.com/johnappleseed</div>
+                </div>
               </div>
             </div>
-            <div className="self-stretch h-[70px] flex-col justify-start items-start gap-1 flex">
-              <div className="w-[396px] text-[#333333] text-xs font-normal font-['Instrument Sans'] leading-[18px]">Link</div>
-              <div className="self-stretch px-4 py-3 bg-white rounded-lg border border-[#d9d9d9] justify-start items-center gap-3 inline-flex">
-                <div className="w-4 h-4 relative"></div>
-                <div className="opacity-50 text-[#333333] text-base font-normal font-['Instrument Sans'] leading-normal">e.g. https://www.github.com/johnappleseed</div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
+
+export default LinkCustomization;
