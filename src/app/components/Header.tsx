@@ -34,7 +34,7 @@ const Header = () => {
             onClick={() => setActiveButton("links")}
           >
             <Image
-              src="/icons/link-icon.svg"
+              src={links}
               alt="Link Icon"
               width={20}
               height={20}
@@ -53,7 +53,7 @@ const Header = () => {
             onClick={() => setActiveButton("profile")}
           >
             <Image
-              src="/icons/profile-icon.svg"
+              src={profile}
               alt="Profile Icon"
               width={20}
               height={20}
